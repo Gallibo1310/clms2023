@@ -97,9 +97,9 @@ class BorrowingController extends Controller
     }
     public function borrowitems(Request $request)
     {
-        DB::beginTransaction();
+        // DB::beginTransaction();
 
-        try {
+        // try {
             //GET SETTING INFOR, GET THE CURRENT YEAR
             $setting = Systemsetting::first();
             $borrowing = new Borrowing();
@@ -116,6 +116,8 @@ class BorrowingController extends Controller
             if(session('borrowercategory') =='Section') // IF BORROWER CATEGORY IS SECTION, INSERT SECTION ID
             {
                 $borrowing->section_id = session('borrowerid');
+
+
             }
             $borrowing->save();
 
@@ -136,7 +138,6 @@ class BorrowingController extends Controller
             {
 
                 $borrowingdetail  =  new Borrowingdetail();
-                $borrowingdetail->student_id= $borrower->id;
                 $borrowingdetail->borrowing_id= $borrowing->id;
                 $borrowingdetail->statusperitem = 'Borrowed';
                 $borrowingdetail->apparatus_id = session('addeditems')[$i] ;
@@ -155,17 +156,21 @@ class BorrowingController extends Controller
 
             $apparatus = Apparatus::all();
 
-            DB::commit();
+            // DB::commit();
 
             return redirect()->route('borrowing',  ['Apparatus' => $apparatus ])->with('message' , 'Borrowing recorded');
-        } catch (\Exception $e) {
-            DB::rollback();
-            return redirect()->back()->with('error', 'An error occurred while recording the borrowing. Please try again later.');
-        }
+        // } catch (\Exception $e) {
+        //     DB::rollback();
+        //     return redirect()->back()->with('error', 'An error occurred while recording the borrowing. Please try again later.');
+        // }
     }
     public function borrowinglist()
     {
-        $borrowings= Borrowing::with('borrowers')->get();
+        $borrowings= Borrowing::with(['borrowers' => function($borrower) {
+            $borrower->with(['student:id,firstname,lastname'])->get();
+       }])->get();
         return view('admin.borrowing.borrowinglist' , ['Borrowings' => $borrowings]);
     }
+
+
 }

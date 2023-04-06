@@ -13,4 +13,5 @@ class Borrowing extends Model
     {
         return $this->hasMany(Borrower::class);
     }
+
 }

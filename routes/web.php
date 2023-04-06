@@ -1,10 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ApparatusController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ApparatusController;
 use App\Http\Controllers\BorrowingController;
+use App\Http\Controllers\ReturningController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +71,14 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
+    Route::prefix('return')->group(function()
+    {
+        Route::get('/', [ReturningController::class, 'index'])->name('return.return');
+    });
+
+
 });
+
+Route::get('/test' ,[TestController::class, 'test']);
 
 

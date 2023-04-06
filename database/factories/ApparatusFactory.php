@@ -19,6 +19,7 @@ class ApparatusFactory extends Factory
         return [
             'category_id' => $this->faker->biasedNumberBetween($min = 1,  $max = 10),
             'name' => $this->faker->unique()->numerify('Apparatus #'),
+            'volume' => $this->faker->unique()->numerify('Volume #'),
             'qty' => 10,
             'available' => 10,
             'location' => 'Laboratory 1',

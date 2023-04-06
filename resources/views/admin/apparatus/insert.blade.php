@@ -111,6 +111,13 @@
                         <div class="row d-flex justify-content-center">
                             <div class="col-lg-6">
                                 <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Volume" name="volume" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
                                     <input type="number" class="form-control" placeholder="Quantity" name="qty" >
                                 </div>
                             </div>

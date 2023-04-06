@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-use App\Models\Borrowing ;
+use App\Models\Section;
 use App\Models\Student ;
+use App\Models\Borrowing ;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -17,9 +18,9 @@ return new class extends Migration
     {
         Schema::create('borrowers', function (Blueprint $table) {
             $table->id();
-            $table->string('borrower_name');
             $table->foreignIdFor(Borrowing::class);
             $table->foreignIdFor(Student::class);
+
             $table->timestamps();
         });
     }

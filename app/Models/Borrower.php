@@ -13,4 +13,15 @@ class Borrower extends Model
     {
         return $this->belongsTo(Borrowing::class);
     }
+
+    public function student() {
+        return $this->belongsTo(Student::class);
+    }
+
+    public function section() {
+        return $this->belongsTo(Section::class);
+    }
+
+
+
 }

@@ -157,6 +157,8 @@
                                 </div>
                                 <div class="card-body pt-0 p-3 text-center">
                                     <h6 class="text-center mb-0">{{ $apparatus->name }}</h6>
+
+                                    <h6 class="text-center mb-0">{{ $apparatus->volume }}</h6>
                                     <p class="text-xs">{{ $apparatus->location }}</p>
                                     @php
                                         $apparatusindex = array_search($apparatus->id, Session::get('addeditems'));
@@ -171,7 +173,7 @@
                                     <hr class="horizontal dark my-3">
                                     <div class="row">
                                         <div class="col-sm-12 col-md-8">
-                                            <input class="form-control form-control-sm w-100 mt-2" type="number" id="qty_{{ $loop->index + 1 }}" required>
+                                            <input class="form-control form-control-sm w-100 mt-2" type="number" min="1" max="{{$apparatus->available}}" id="qty_{{ $loop->index + 1 }}" required>
                                         </div>
                                         <div class="col-sm-12 col-md-4">
                                             <button type="button" class="btn btn-info w-100 mt-2" onclick="additem({{ $loop->index + 1 }}, {{ $apparatus->id }}, {{ $apparatus->available - $tosubtract }})">
@@ -370,6 +372,13 @@
 
 
 <script>
+    // function valdiateInput(available, inputId){
+
+    //   console.log(inputId.id)
+    //   document.getElementById(inputId.id).classList.addClass = 'Hello'
+    //   // inputId.classList.addClass = 'hello'
+    // }
+
     function additem(id, apparatusid ,limitqty)
     {
 

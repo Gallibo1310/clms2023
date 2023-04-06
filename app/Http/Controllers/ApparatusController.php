@@ -31,6 +31,7 @@ class ApparatusController extends Controller
         $apparatus = new Apparatus();
         $apparatus->category_id = $request->category;
         $apparatus->name = $request->name;
+        $apparatus->volume = $request->volume;
         $apparatus->qty = $request->qty;
         $apparatus->borrowed = 0;
         $apparatus->available = $request->qty;

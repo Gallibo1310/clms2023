@@ -18,8 +18,10 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Category::class);
             $table->string('name');
+            $table->string('volume');
             $table->integer('qty');
             $table->integer('available');
+
             $table->string('location');
             $table->string('description');
             $table->string('status');
